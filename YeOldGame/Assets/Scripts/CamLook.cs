@@ -23,8 +23,8 @@ public class CamLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseDeltaX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-
-        player.transform.Rotate(new Vector3(mouseDeltaY, mouseDeltaX, 0f));
+        mouseDeltaX = Input.GetAxis("Mouse X") * sensitivity;
+        player.transform.Rotate(new Vector3(mouseDeltaY, mouseDeltaX, 0f) * Time.deltaTime);
+        Debug.Log(mouseDeltaX);
     }
 }

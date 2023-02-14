@@ -8,25 +8,62 @@ public class Movement : MonoBehaviour
     float vertical = 0f;
     float speed = 30f;
     float jumpForce = 120f;
+    public bool grounded = false;
 
     Vector3 movement = Vector3.zero;
     Rigidbody rb;
+    Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        RaycastHit hit;
+        grounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        if (Physics.Raycast(transform.position, Vector3.down, 1.9f) && !grounded && rb.velocity.y < 0f)
+        {
+            animator.SetBool("approachingGround", true);
+        }
+        else
+        {
+            animator.SetBool("approachingGround", false);
+            animator.SetBool("jumpPressed", false);
+        }
+
+        if (grounded)
+        {
+            animator.SetBool("grounded", true);
+        }
+        else
+        {
+            animator.SetBool("grounded", false);
+        }
+
+        if (hit.collider != null)
+        {
+            if (transform.position.y - hit.collider.transform.position.y <= 0.05f)
+            {
+                animator.SetBool("aboveGround", true);
+            }
+        }
+        else
+        {
+            animator.SetBool("aboveGround", false);
+        }
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         movement = transform.forward * vertical + transform.right * horizontal;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && grounded)
         {
+            animator.SetBool("jumpPressed", true);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        Debug.Log(rb.velocity);
+        //Debug.Log(animator.GetBool("approachingGround"));
     }
 
     private void FixedUpdate()
