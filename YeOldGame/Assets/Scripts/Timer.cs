@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
         currentTime = Time.time;
         if (!gameOver)
         {
-            timeText.text = "Time: " + currentTime.ToString() + " seconds";
+            timeText.text = string.Format("Time: {0:#.00} seconds", currentTime);
         }
     }
 
@@ -38,11 +38,11 @@ public class Timer : MonoBehaviour
             endTime = currentTime;
             if (endTime <= winningTime)
             {
-                timeText.text = "You won in " + endTime.ToString() + " seconds!";
+                timeText.text = string.Format("You won in {0:#.00} seconds!", endTime);
             }
             else
             {
-                timeText.text = "You lost in " + endTime.ToString() + " seconds!";
+                timeText.text = string.Format("You lost in {0:#.00} seconds!", endTime);
             }
         }
     }

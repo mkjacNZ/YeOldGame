@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
     float horizontal = 0f;
     float vertical = 0f;
     float speed = 30f;
-    float jumpForce = 120f;
+    float jumpForce = 100f;
     public bool grounded = false;
 
     Vector3 movement = Vector3.zero;
@@ -69,5 +69,21 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(movement.normalized * speed, ForceMode.Acceleration);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "moving")
+        {
+            transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "moving")
+        {
+            transform.SetParent(null);
+        }
     }
 }
