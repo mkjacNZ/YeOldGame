@@ -6,7 +6,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     float startTime = 0f;
-    float currentTime = 0f;
+    public static float currentTime = 0f;
     float endTime = 0f;
     float winningTime = 20f;
 
@@ -23,10 +23,17 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime = Time.time;
+        currentTime = Time.timeSinceLevelLoad;
         if (!gameOver)
         {
-            timeText.text = string.Format("Time: {0:#.00} seconds", currentTime);
+            if (currentTime < 1f)
+            {
+                timeText.text = string.Format("Time: 0{0:#.00} seconds", currentTime);
+            }
+            else
+            {
+                timeText.text = string.Format("Time: {0:#.00} seconds", currentTime);
+            }
         }
     }
 
