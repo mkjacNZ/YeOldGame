@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                timeText.text = "You lost in " + endTime.ToString() + "seconds :(";
+                timeText.text = "You lost in " + endTime.ToString() + " seconds!";
             }
         }
     }
