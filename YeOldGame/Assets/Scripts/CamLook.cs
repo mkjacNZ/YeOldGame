@@ -25,6 +25,5 @@ public class CamLook : MonoBehaviour
     {
         mouseDeltaX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         player.transform.Rotate(new Vector3(mouseDeltaY, mouseDeltaX, 0f));
-        Debug.Log(mouseDeltaX);
     }
 }

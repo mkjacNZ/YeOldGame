@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotatingPath : MonoBehaviour
 {
-    float rotationSpeed = 2.5f;
+    float rotationSpeed = 30f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,11 @@ public class RotatingPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up, 2f);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(Vector3.up * rotationSpeed * Time.fixedDeltaTime);
     }
 }

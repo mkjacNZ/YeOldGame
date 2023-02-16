@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
+    float rotationSpeed = 50f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,18 @@ public class Fish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(1f, 0f, 1f), 5f);
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (gameObject.name == "FishObstacle1")
+        {
+            transform.Rotate(new Vector3(-1f, 0f, -1f) * rotationSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            transform.Rotate(new Vector3(1f, 0f, 1f) * rotationSpeed * Time.fixedDeltaTime);
+        }
     }
 }

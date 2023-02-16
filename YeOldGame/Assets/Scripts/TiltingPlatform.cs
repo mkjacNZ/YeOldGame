@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TiltingPlatform : MonoBehaviour
 {
+    float rotationSpeed = 30f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,11 @@ public class TiltingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.right * 0.5f);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(Vector3.right * rotationSpeed * Time.fixedDeltaTime);
     }
 }
