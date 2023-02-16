@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HayBalls : MonoBehaviour
+{
+    public GameObject Ball;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.timeSinceLevelLoad % 5f == 0)
+        {
+            SpawnBall();
+        }
+    }
+
+    private void SpawnBall()
+    {
+        GameObject.Instantiate(Ball, transform);
+    }
+}
