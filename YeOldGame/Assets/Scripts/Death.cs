@@ -23,6 +23,7 @@ public class Death : MonoBehaviour
     {
         if (other.gameObject.tag == "water")
         {
+            Destroy(GameObject.Find("Canvas"));
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
@@ -33,6 +34,7 @@ public class Death : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<MeshRenderer>().material.color == red.color)
             {
+                Destroy(GameObject.Find("Canvas"));
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -44,6 +46,7 @@ public class Death : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<MeshRenderer>().material.color == red.color)
             {
+                Destroy(GameObject.Find("Canvas"));
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }

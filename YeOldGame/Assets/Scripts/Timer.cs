@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     float startTime = 0f;
     public static float currentTime = 0f;
     float endTime = 0f;
-    float winningTime = 20f;
+    float winningTime = 32f;
+    bool buttonShown = false;
+    public GameObject button;
 
-    bool gameOver = false;
+    public static bool gameOver = false;
 
     public TextMeshProUGUI timeText;
-    public AudioMixer audioMixer;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +46,17 @@ public class Timer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !gameOver)
         {
+            if (!buttonShown)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Instantiate(button, GameObject.Find("Canvas").transform);
+                buttonShown = true;
+            }
+
             gameOver = true;
             endTime = currentTime;
+            audioSource.Play();
             if (endTime <= winningTime)
             {
                 timeText.text = string.Format("You won in {0:#.00} seconds!", endTime);

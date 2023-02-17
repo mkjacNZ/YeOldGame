@@ -94,8 +94,6 @@ public class Movement : MonoBehaviour
         {
             backTiltBackwards = false;
         }
-        //Debug.Log(animator.GetBool("approachingGround"));
-        Mathf.Clamp(back.transform.rotation.z, 90f, -124f);
     }
 
     private void FixedUpdate()

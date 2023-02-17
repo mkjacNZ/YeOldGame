@@ -9,6 +9,7 @@ TagManager:
   - moving
   - water
   - cube
+  - test
   layers:
   - Default
   - TransparentFX
