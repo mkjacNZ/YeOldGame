@@ -22,7 +22,9 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         startTime = Time.time;
+        endTime = 0f;
     }
 
     // Update is called once per frame
