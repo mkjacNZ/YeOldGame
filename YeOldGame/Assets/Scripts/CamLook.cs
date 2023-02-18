@@ -9,7 +9,7 @@ public class CamLook : MonoBehaviour
     public GameObject player;
     float mouseDeltaX = 0f;
     float mouseDeltaY = 0f;
-    float sensitivity = 400f;
+    float sensitivity = 300f;
     Quaternion rotation;
 
     // Start is called before the first frame update
@@ -23,7 +23,10 @@ public class CamLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseDeltaX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        player.transform.Rotate(new Vector3(mouseDeltaY, mouseDeltaX, 0f));
+        if (!Timer.gameOver)
+        {
+            mouseDeltaX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            player.transform.Rotate(new Vector3(mouseDeltaY, mouseDeltaX, 0f));
+        }
     }
 }
